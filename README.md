@@ -1,2 +1,2 @@
-# quiz-app
-simple applicaton quiz to  measure a knowloge about anytihing simple 
+# cobra-aqui-api
+api-cobra-aqui -> para credito e cobranças
