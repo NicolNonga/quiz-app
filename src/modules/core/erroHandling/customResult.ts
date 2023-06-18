@@ -4,15 +4,15 @@ export class Result<T>{
     public error: string
     private _value: T;
 
-     private constructor(isSucess:boolean, error?:string, value?:T){
-        if(isSucess && error){
+     private constructor(isSuccess:boolean, error?:string, value?:T){
+        if(isSuccess && error){
             throw new Error("InvalidOperatino: A result cannot be sucessufull and coantain an error")
         }
-        if(!isSucess && !error){
+        if(!isSuccess && !error){
             throw new Error("InvalidOperation:  A failing result needs to contain an error message")
         }
 
-        this.isSuccess= isSucess;
+        this.isSuccess= isSuccess;
         this.error= error;
         this._value= value
 
