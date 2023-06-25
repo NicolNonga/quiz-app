@@ -30,7 +30,7 @@ export class UserRepository implements IUserRepository {
             user_name: userName
         }
        })
-       return {username: user?.user_name, type_user: user?.typeUser}
+       return {username: user?.user_name, type_user: user?.typeUser, password: user?.password}
   }
  async findAll(): Promise<UserModel[]> {
   return (await db.user.findMany()).map(user =>{

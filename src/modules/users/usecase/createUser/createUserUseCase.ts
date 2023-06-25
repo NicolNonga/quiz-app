@@ -1,7 +1,7 @@
 import { clientModel } from "../../../clients/mdoel/clientModel";
 import { Result } from "../../../core/erroHandling/customResult";
 import { IuseCase } from "../../../core/interface/IUseCase";
-import { ICrypt } from "../../adapter/interface/crypt-adapter";
+import { ICrypt } from "../../../core/adapter/interface/crypt-adapter";
 import { createUserDTO } from "../../dto/createUserDTO";
 import UserModel from "../../model/userModel";
 import { IUserRepository } from "../../repository/interface/IUserRepository";
