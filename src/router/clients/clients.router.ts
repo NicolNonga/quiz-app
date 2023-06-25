@@ -4,19 +4,19 @@ import { getClientByIdController } from '../../modules/clients/usecase/getClient
 import { listClientController } from '../../modules/clients/usecase/listClient';
 import { updateClientController } from '../../modules/clients/usecase/updateClient';
 
-const clienteRoutes= Router();
+const clientsRoutes= Router();
 
-clienteRoutes.post("/clients", (request, response)=>{
+clientsRoutes.post("/clients", (request, response)=>{
      return createClientController.handle(request, response)
 })
-clienteRoutes.get("/clients/all", (request, response)=>{
+clientsRoutes.get("/clients/all", (request, response)=>{
      return listClientController.handle(request, response)
 })
-clienteRoutes.get("/clients/:clientId", (request, response)=>{
+clientsRoutes.get("/clients/:clientId", (request, response)=>{
      return getClientByIdController.handle(request, response)
 })
 
- clienteRoutes.put("/clients/:clientId", (request, response)=>{
+ clientsRoutes.put("/clients/:clientId", (request, response)=>{
      return updateClientController.handle(request, response)
  })
-export { clienteRoutes }
+export { clientsRoutes as clientsRoutes }

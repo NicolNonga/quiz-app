@@ -10,7 +10,6 @@ export class ClientRepository implements IClientRepository {
     this.clients = [];
   }
 
-
   public static getInstance(): ClientRepository {
     if (!this.INSTANCE) {
       this.INSTANCE = new ClientRepository();
@@ -28,9 +27,8 @@ export class ClientRepository implements IClientRepository {
   }
 
   findByNif(nif: string): clientModel {
-
     const clientNif = this.clients.find((client) => client.nif == nif);
-    return clientNif
+    return clientNif;
   }
 
   findAll(): clientModel[] {
@@ -38,24 +36,22 @@ export class ClientRepository implements IClientRepository {
   }
 
   findByName(name: string): clientModel {
-    
     const clientName = this.clients.find((client) => client.name == name);
     return clientName;
   }
 
   findById(id: string): clientModel {
-    const client= this.clients.find(client=>client.id== id)
+    const client = this.clients.find((client) => client.id == id);
     return client;
   }
 
   update(id: string, value: createClientDTO) {
-      for(let i=0; i< this.clients.length; i++){
-               if(this.clients[i].id== id){
-                this.clients[i].adress= value.adress;
-                this.clients[i].name= value.name;
-                this.clients[i].email= value.email;
-               }
+    for (let i = 0; i < this.clients.length; i++) {
+      if (this.clients[i].id == id) {
+        this.clients[i].adress = value.adress;
+        this.clients[i].name = value.name;
+        this.clients[i].email = value.email;
       }
+    }
   }
-
 }

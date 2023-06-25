@@ -1,19 +1,22 @@
 import { clientModel } from "../../../clients/mdoel/clientModel";
 import { Result } from "../../../core/erroHandling/customResult";
 import { IuseCase } from "../../../core/interface/IUseCase";
+import { ICrypt } from "../../adapter/interface/crypt-adapter";
 import { createUserDTO } from "../../dto/createUserDTO";
 import UserModel from "../../model/userModel";
 import { IUserRepository } from "../../repository/interface/IUserRepository";
 
+
 export class CreateUserUseCase implements IuseCase<createUserDTO, any>{
 
-    constructor(private UserRepository:IUserRepository){
+    private NUMBER_OF_HASH = 10
+    constructor(private UserRepository:IUserRepository, private CryptPassword:ICrypt){
 
     }
    
    async execute(data?: createUserDTO):Promise<Result <UserModel | any>>{
 
-    console.log(data.username)
+       const {username, password, type_user}= data
 
 
         //? check if the username alread exists or not
@@ -25,9 +28,10 @@ export class CreateUserUseCase implements IuseCase<createUserDTO, any>{
          }
         
          const  userCreated:UserModel = await this.UserRepository.create({
-            username: data.username,
-            type_user: data.type_user,
-            password:  data.password  // hash the password before save
+                 username,
+                 type_user,
+                 password: await this.CryptPassword.crypt(password, this.NUMBER_OF_HASH) 
+                
          })
          return Result.ok(userCreated)
     }

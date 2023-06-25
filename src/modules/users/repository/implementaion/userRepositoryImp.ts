@@ -24,7 +24,7 @@ export class UserRepository implements IUserRepository {
     throw new Error("Falha ao cadastra.");
   }
  async findByUserName(userName: string): Promise<UserModel> {
-    console.log(userName)
+
        const user = await db.user.findFirst({
         where: {
             user_name: userName
@@ -32,9 +32,19 @@ export class UserRepository implements IUserRepository {
        })
        return {username: user?.user_name, type_user: user?.typeUser}
   }
-  findAll(): Promise<UserModel[]> {
-    throw new Error("Method not implemented.");
+ async findAll(): Promise<UserModel[]> {
+  return (await db.user.findMany()).map(user =>{
+      return {
+        username: user.user_name,
+        type_user: user.typeUser,
+        created_at : user.createdAt,
+        updated_at:  user.createdAt
+      }
+
+  
+     })
   }
+
   findById(id: string): Promise<UserModel> {
     throw new Error("Method not implemented.");
   }
