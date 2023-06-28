@@ -1,6 +1,6 @@
  interface ICrypt{
     crypt(value: string, salt: number):Promise<string>
-    compare(firstValue: string, secondValue: string)
+    compare(hashValue: string, planText: string)
 }
 
 export {ICrypt}
