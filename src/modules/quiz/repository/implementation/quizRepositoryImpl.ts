@@ -10,16 +10,16 @@ export class QuizRepositoryImpl implements IQuizRepository{
 
   public async  findQuizByName(quiz_name: string): Promise<QuizModel> {
 
-        const quiz= await this.prismaDb.quiz.findFirst({
+      return await this.prismaDb.quiz.findFirst({
             where: {
                 name: quiz_name
             }
         })
-        return quiz
+       
 
  }
  public async findQuizByCategory(quiz_category: string): Promise<QuizModel> {
-           const quiz = await this.prismaDb.quiz.findFirst({
+           return await this.prismaDb.quiz.findFirst({
             where: {
                 quiz_category: quiz_category
             }
@@ -27,7 +27,7 @@ export class QuizRepositoryImpl implements IQuizRepository{
  }
    public async createQuiz(quiz_data: createQuizDTO): Promise<QuizModel> {
      try {
-         const quiz = await this.prismaDb.quiz.create(
+        return await this.prismaDb.quiz.create(
             {
                data : {
                 name: quiz_data?.name,
@@ -35,7 +35,7 @@ export class QuizRepositoryImpl implements IQuizRepository{
                } 
             }
          )
-         return quiz
+       
      } catch (error) {
       
          throw error("please any error try late")
