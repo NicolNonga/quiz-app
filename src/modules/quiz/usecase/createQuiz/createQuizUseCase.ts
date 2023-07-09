@@ -20,10 +20,12 @@ export class  CreateQuizUseCase implements  IuseCase<createQuizDTO, any>{
 
            // check if quiz-category is already created 
            const quiz_category_exits = await  this.quizRepository.findQuizByCategory(quiz_category)
+           const quiz_name_exits = await this.quizRepository.findQuizByName(name)
 
-           if(quiz_category_exits){
-             return Result.fail("Já existe categora para este quiz")
-           }
+           if(quiz_name_exits)  return Result.fail("Já existe este nome")
+
+           if(quiz_category_exits) return Result.fail("Já existe categora para este quiz")
+           
 
            const quizCreated =  await this.quizRepository.createQuiz(
                 {name, quiz_category}

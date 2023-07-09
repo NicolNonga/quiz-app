@@ -3,6 +3,7 @@ import { createQuizDTO } from "../../dto/createQuizDTO";
 import QuizModel from "../../model/quizModel";
 import { IQuizRepository } from "../interface/IQuizRepository";
 import { db } from "../../../../utils/db.server";
+import { UpdateQuizDTO } from "../../dto/updateQuizDTO";
 
 export class QuizRepositoryImpl implements IQuizRepository{
 
@@ -47,7 +48,24 @@ export class QuizRepositoryImpl implements IQuizRepository{
          return (await this.prismaDb.quiz.findMany())
     }
   public async  findQuizById(quiz_id: string): Promise<QuizModel> {
-        throw new Error("Method not implemented.");
+         return (await this.prismaDb.quiz.findUnique({
+             where: {
+                id: quiz_id
+             }
+         }))
     }
     
+
+   public async  editQuiz(quiz_data: UpdateQuizDTO,quiz_id:string): Promise<void> {
+      const updateQuiz = await this.prismaDb.quiz.update({
+         where: {
+            id: quiz_id
+         },
+         data : {
+            quiz_category: quiz_data.quiz_category,
+            name: quiz_data.name
+         }
+      })
+    }
+
 }
