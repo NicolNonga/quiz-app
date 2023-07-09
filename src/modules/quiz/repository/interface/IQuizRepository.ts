@@ -9,4 +9,5 @@ export interface IQuizRepository {
   findQuizByName(quiz_name: string): Promise<QuizModel>
   findQuizByCategory(quiz_category: string): Promise<QuizModel>
   editQuiz(quiz_data:UpdateQuizDTO, quiz_id: string): Promise<void>
+  delete(quiz_id: string): Promise<void>
 }

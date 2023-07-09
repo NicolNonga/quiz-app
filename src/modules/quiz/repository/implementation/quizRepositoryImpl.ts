@@ -7,6 +7,7 @@ import { UpdateQuizDTO } from "../../dto/updateQuizDTO";
 
 export class QuizRepositoryImpl implements IQuizRepository{
 
+
     private prismaDb = db
 
   public async  findQuizByName(quiz_name: string): Promise<QuizModel> {
@@ -67,5 +68,15 @@ export class QuizRepositoryImpl implements IQuizRepository{
          }
       })
     }
+
+  public async  delete(quiz_id: string): Promise<any> {
+         return await this.prismaDb.quiz.delete({
+            where: {
+                id: quiz_id
+            }
+         }).catch((err)=>{
+            throw Error("Ups faild to delete")
+         })
+    } 
 
 }
