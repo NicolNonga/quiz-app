@@ -11,14 +11,14 @@ datasource db {
 }
 
 model user {
-  id           String        @id @default(uuid())
-  user_name    String        @unique
+  id           String         @id @default(uuid())
+  user_name    String         @unique
   password     String
-  typeUser     Role          @default(User)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  typeUser     Role           @default(User)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   quiz_attempt quiz_attempt[]
-  user_photo user_photo []
+  user_photo   user_photo[]
 }
 
 model quiz_attempt {
@@ -32,21 +32,40 @@ model quiz_attempt {
 }
 
 model quiz {
-  id            String        @id @default(uuid())
-  name          String        @unique
-  quiz_category String        @unique
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id            String          @id @default(uuid())
+  name          String          @unique
+  quiz_category String          @unique
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   quiz_attempt  quiz_attempt[]
+  quiz_question quiz_question[]
 }
 
 model user_photo {
   id        String   @id @default(uuid())
   file_path String
-  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id  String
+  user      user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model quiz_question {
+  id            String        @id @default(uuid())
+  question_text String
+  quiz          quiz          @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id       String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  quiz_option   quiz_option[]
+}
+
+model quiz_option {
+  id               String        @id @default(uuid())
+  option_text      String
+  is_correct       Boolean
+  quiz_question    quiz_question @relation(fields: [quiz_question_id], references: [id], onDelete: Cascade)
+  quiz_question_id String
 }
 
 enum Role {

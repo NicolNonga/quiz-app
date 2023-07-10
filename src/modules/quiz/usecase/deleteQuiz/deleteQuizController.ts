@@ -7,16 +7,20 @@ export class DeleteQuizController implements IController<any, any> {
         
     }
    
-   public async handle(Request?: Request, response?: Response):Promise<Response> {
+   public async handle(request?: Request, response?: Response):Promise<Response> {
        const {quiz_id} = request.params;
+
+      
        const quizDeleteOrError = await this.quizDeleteUseCase.execute(
-         {},
          quiz_id
-       )
-       if(quizDeleteOrError.isFailure) return response.status(400).send({message: quizDeleteOrError.error})
        
-       return response.status(200).send({message: 
-        quizDeleteOrError.getValue})
+        )
+        console.log(quizDeleteOrError.getValue())
+       if(!quizDeleteOrError.isSuccess){
+        return response.status(400).send({message: quizDeleteOrError.error})
+       }
+       
+       return response.status(200).send({message: 'quiz deletado com sucesso'})
 
     }
 }
