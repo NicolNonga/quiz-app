@@ -14,7 +14,7 @@ export class  CreateQuizUseCase implements  IuseCase<createQuizDTO, any>{
         // first check if quiz name  exits
           const quiz_name = await this.quizRepository.findQuizByName(name);
            if(quiz_name){
-               return Result.fail("Já existe um nome para este quiz")
+               return Result.fail("quiz name already exist")
 
            }
 
