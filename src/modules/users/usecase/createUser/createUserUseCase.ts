@@ -21,7 +21,7 @@ export class CreateUserUseCase implements IuseCase<createUserDTO, any>{
 
         //? check if the username alread exists or not
 
-        const user = await this.UserRepository.findByUserName(data.username)
+        const user:UserModel = await this.UserRepository.findByUserName(data.username)
 
          if(user.username){
             return  Result.fail("Já existe um utilizador com esse  nome")

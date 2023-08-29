@@ -14,4 +14,4 @@ export class FindAllQuizUseCase implements IuseCase<any, any> {
         const quiz = await this.quizRepository.findAllQuiz();
         return Result.ok(quiz)
     }
-}
+} 

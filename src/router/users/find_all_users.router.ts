@@ -8,4 +8,4 @@ findUserRouter.get('/users/all', (request, response)=>{
    return   findAllUserController.handle(request, response)
 })
 
-export { findUserRouter}
+export {findUserRouter}

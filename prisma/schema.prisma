@@ -22,28 +22,47 @@ model user {
 }
 
 model quiz_attempt {
-  id        String   @id @default(uuid())
-  user      user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id   String
-  quiz      quiz     @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  quiz_id   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String      @id @default(uuid())
+  user           user        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id        String
+  quiz_option    quiz_option @relation(fields: [quez_option_id], references: [id], onDelete: Cascade)
+  quez_option_id String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 }
 
 model quiz {
+  id           String         @id @default(uuid())
+  name         String         @unique
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  quiz_section quiz_section[]
+}
+
+model quiz_section {
   id            String          @id @default(uuid())
   name          String          @unique
-  quiz_category String          @unique
+  category_id   String
+  category      category        @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  quiz_id       String
+  quiz          quiz            @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  quiz_attempt  quiz_attempt[]
   quiz_question quiz_question[]
+}
+
+model category {
+  id           String         @id @default(uuid())
+  name         String         @unique
+  quiz_section quiz_section[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }
 
 model user_photo {
   id        String   @id @default(uuid())
-  file_path String
+   quiz_attchment  quiz_attachment @relation(fields: [quiz_attachment_id], references: [id], onDelete: Cascade)
+   quiz_attachment_id String
   user      user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id   String
   createdAt DateTime @default(now())
@@ -51,21 +70,43 @@ model user_photo {
 }
 
 model quiz_question {
-  id            String        @id @default(uuid())
-  question_text String
-  quiz          quiz          @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  quiz_id       String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  quiz_option   quiz_option[]
+  id              String        @id @default(uuid())
+  question_text   String
+  quiz_section    quiz_section  @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
+  quiz_section_id String
+ 
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  quiz_option     quiz_option[]
 }
 
 model quiz_option {
-  id               String        @id @default(uuid())
+  id               String         @id @default(uuid())
   option_text      String
+   is_img         Boolean
   is_correct       Boolean
-  quiz_question    quiz_question @relation(fields: [quiz_question_id], references: [id], onDelete: Cascade)
+  quiz_question    quiz_question  @relation(fields: [quiz_question_id], references: [id], onDelete: Cascade)
   quiz_question_id String
+  quiz_attempt     quiz_attempt[]
+  quiz_attachment_option  quiz_attachment_option[]
+}
+
+model quiz_attachment_option{
+  id        String   @id @default(uuid())
+  quiz_option_id   String
+  quiz_attachment_id String
+  quiz_option  quiz_option @relation(fields: [quiz_option_id], references: [id], onDelete: Cascade)
+  quiz_attacment quiz_attachment @relation(fields: [quiz_attachment_id], references: [id],onDelete: Cascade)
+}
+
+model quiz_attachment {
+  id        String   @id @default(uuid())
+  file_path String
+  file_name String
+  user_photo  user_photo[]
+    quiz_attachment_option  quiz_attachment_option[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {

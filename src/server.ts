@@ -8,6 +8,7 @@ import { quizRouters } from "./router/quiz/create_quiz.router";
 import { findAllQuizRouter } from "./router/quiz/find_all_quiz.router";
 import { updateQuizRouter } from "./router/quiz/update_quiz.router";
 import { deleteQuizRouter } from "./router/quiz/delete_quiz.router";
+import { create_category } from "./router/category/create_category.router";
 
 const app = express();
 app.use(express.json())
@@ -20,4 +21,5 @@ app.use(quizRouters)
 app.use(findAllQuizRouter)
 app.use(updateQuizRouter)
 app.use(deleteQuizRouter)
+app.use(create_category)
 app.listen(3333); 
