@@ -14,7 +14,7 @@ export class CreateUserUseCase implements IuseCase<createUserDTO, any>{
 
     }
    
-   async execute(data?: createUserDTO):Promise<Result <UserModel | any>>{
+   async execute(data: createUserDTO):Promise<Result <UserModel>>{
 
        const {username, password, type_user}= data
 
