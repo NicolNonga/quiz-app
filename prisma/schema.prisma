@@ -60,53 +60,55 @@ model category {
 }
 
 model user_photo {
-  id        String   @id @default(uuid())
-   quiz_attchment  quiz_attachment @relation(fields: [quiz_attachment_id], references: [id], onDelete: Cascade)
-   quiz_attachment_id String
-  user      user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                 String          @id @default(uuid())
+  quiz_attchment     quiz_attachment @relation(fields: [quiz_attachment_id], references: [id], onDelete: Cascade)
+  quiz_attachment_id String
+  user               user            @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id            String
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
 }
 
 model quiz_question {
-  id              String        @id @default(uuid())
+  id              String       @id @default(uuid())
   question_text   String
-  quiz_section    quiz_section  @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
+  quiz_section    quiz_section @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
   quiz_section_id String
- 
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  quiz_option     quiz_option[]
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  quiz_option quiz_option[]
 }
 
 model quiz_option {
-  id               String         @id @default(uuid())
-  option_text      String
-   is_img         Boolean
-  is_correct       Boolean
-  quiz_question    quiz_question  @relation(fields: [quiz_question_id], references: [id], onDelete: Cascade)
-  quiz_question_id String
-  quiz_attempt     quiz_attempt[]
-  quiz_attachment_option  quiz_attachment_option[]
+  id                     String                   @id @default(uuid())
+  option_text            String
+  is_img                 Boolean
+  is_correct             Boolean
+  quiz_question          quiz_question            @relation(fields: [quiz_question_id], references: [id], onDelete: Cascade)
+  quiz_question_id       String
+  quiz_attempt           quiz_attempt[]
+  quiz_attachment_option quiz_attachment_option[]
+
+  //! add created_at and updated_at
 }
 
-model quiz_attachment_option{
-  id        String   @id @default(uuid())
-  quiz_option_id   String
+model quiz_attachment_option {
+  id                 String          @id @default(uuid())
+  quiz_option_id     String
   quiz_attachment_id String
-  quiz_option  quiz_option @relation(fields: [quiz_option_id], references: [id], onDelete: Cascade)
-  quiz_attacment quiz_attachment @relation(fields: [quiz_attachment_id], references: [id],onDelete: Cascade)
+  quiz_option        quiz_option     @relation(fields: [quiz_option_id], references: [id], onDelete: Cascade)
+  quiz_attacment     quiz_attachment @relation(fields: [quiz_attachment_id], references: [id], onDelete: Cascade)
 }
 
 model quiz_attachment {
-  id        String   @id @default(uuid())
-  file_path String
-  file_name String
-  user_photo  user_photo[]
-    quiz_attachment_option  quiz_attachment_option[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                     String                   @id @default(uuid())
+  file_path              String
+  file_name              String
+  user_photo             user_photo[]
+  quiz_attachment_option quiz_attachment_option[]
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
 }
 
 enum Role {

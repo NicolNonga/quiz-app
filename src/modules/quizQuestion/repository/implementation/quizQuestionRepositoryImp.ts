@@ -15,7 +15,9 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
     });
   }
 
-  public async getByQuiz(quiz_question_id: string): Promise<QuizQuestionModel | any> {
+  public async getByQuiz(
+    quiz_question_id: string
+  ): Promise<QuizQuestionModel | any> {
     return this.prismaDb.quiz_question.findUnique({
       where: {
         id: quiz_question_id,
@@ -25,7 +27,7 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
 
   public async findQuizQuestionText(
     quiz_text: string
-  ): Promise<QuizQuestionModel |any> {
+  ): Promise<QuizQuestionModel | any> {
     return await this.prismaDb.quiz_question.findFirst({
       where: {
         question_text: quiz_text,

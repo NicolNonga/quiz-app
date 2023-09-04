@@ -13,6 +13,7 @@ import { createQuizSectionRouter } from "./router/quiz_section/create_quiz_secti
 import { findAllQuizSectionRouter } from "./router/quiz_section/find_all_quiz_secton.router";
 import { quizQuestionRouter } from "./router/quiz_question/create_quiz_question.router";
 import { findAllQuizQuestionRouter } from "./router/quiz_question/find_all_quiz_question.router";
+import { createQuizOptionRouter } from "./router/quizOption/create_quiz_option.router";
 
 const app = express();
 app.use(express.json())
@@ -30,4 +31,5 @@ app.use(createQuizSectionRouter)
 app.use(findAllQuizSectionRouter)
 app.use(quizQuestionRouter)
 app.use(findAllQuizQuestionRouter)
+app.use(createQuizOptionRouter)
 app.listen(3333); 

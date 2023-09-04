@@ -15,7 +15,7 @@ export class CreateCategoryUseCase implements IuseCase<any, any>{
 
         // ? first or before check if category name already exists 
         const category: CategoryModel | void = await   this.categoryRepository.findCategoryByName(name);
-          console.log(category?.name)
+
         if(category?.name)  return Result.fail("Category Name already exist")
 
         const catgoryCreated = await this.categoryRepository.create({name})
