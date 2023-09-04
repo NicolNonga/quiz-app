@@ -1,5 +1,5 @@
 export default class QuizModel {
-  name: string;
+  name?: string;
   createdAt?: Date;
   updateAt?: Date;
 }

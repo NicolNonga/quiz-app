@@ -8,27 +8,23 @@ import { IQuizQuestionRepository } from "../../repository/interface/IQuizQuestio
 export class CreateQuizQuestionUseCase implements IuseCase<any, any> {
   constructor(
     private readonly quizQuestionRepository: IQuizQuestionRepository,
-    private readonly quizRepository: IQuizRepository
+ 
   ) {}
 
   public async execute(
-    data?: CreateQuizQuestionDTO,
-    body?: any
-  ): Promise<Result<QuizQuestionModel | []>> {
-    const { question_text, quiz_id } = data;
+    data: CreateQuizQuestionDTO,
+    body: any
+  ): Promise<Result<QuizQuestionModel> |  any> {
+    const { question_text, quiz_section_id } = data;
     // first validate if quiz_text_exit or not
-    const find_quiz_text =  await this.quizQuestionRepository.findQuizQuestionText(question_text);
-    if (find_quiz_text) return Result.fail("Quiz Text already created");
-
-    // we should also find if quiz_id is valid id from quiz
-
-    const quiz = await this.quizRepository.findQuizById(quiz_id);
-    if (!quiz) return Result.fail("please provide a valid quiz");
+    const find_quiz_text =
+      await this.quizQuestionRepository.findQuizQuestionText(question_text);
+    if (find_quiz_text) return Result.fail("Quiz Question already created");
 
     const quiz_question = await this.quizQuestionRepository.create({
-      quiz_id,
+      quiz_section_id,
       question_text,
     });
-    Result.ok(quiz_question);
+    return Result.ok(quiz_question);
   }
 }

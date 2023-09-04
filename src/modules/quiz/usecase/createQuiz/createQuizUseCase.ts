@@ -8,7 +8,7 @@ export class  CreateQuizUseCase implements  IuseCase<createQuizDTO, any>{
     constructor(private readonly quizRepository: IQuizRepository){
 
     }
-   public async execute(data?: createQuizDTO, body?: any): Promise<Result<QuizModel> >{
+   public async execute(data: createQuizDTO, body?: any): Promise<Result<QuizModel> >{
         
     const {name} = data
         // first check if quiz name  exits

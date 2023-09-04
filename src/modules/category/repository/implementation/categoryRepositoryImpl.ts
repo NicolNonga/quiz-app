@@ -20,7 +20,7 @@ export class CategoryRepositoryImpl implements ICategoryRepository {
   }
   public async findCategoryByName(
     category_nome: string
-  ): Promise<CategoryModel> {
+  ): Promise<CategoryModel | any> {
     return await this.DB.category.findFirst({
       where: {
         name: category_nome,

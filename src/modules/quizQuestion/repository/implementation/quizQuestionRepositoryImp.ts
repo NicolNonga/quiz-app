@@ -9,13 +9,13 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
   public async create(data: CreateQuizQuestionDTO): Promise<QuizQuestionModel> {
     return await db.quiz_question.create({
       data: {
-        quiz_id: data.quiz_id,
+        quiz_section_id: data.quiz_section_id,
         question_text: data.question_text,
       },
     });
   }
 
-  public async getByQuiz(quiz_question_id: string): Promise<QuizQuestionModel> {
+  public async getByQuiz(quiz_question_id: string): Promise<QuizQuestionModel | any> {
     return this.prismaDb.quiz_question.findUnique({
       where: {
         id: quiz_question_id,
@@ -25,7 +25,7 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
 
   public async findQuizQuestionText(
     quiz_text: string
-  ): Promise<QuizQuestionModel> {
+  ): Promise<QuizQuestionModel |any> {
     return await this.prismaDb.quiz_question.findFirst({
       where: {
         question_text: quiz_text,
@@ -36,7 +36,7 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
   public async findAll(): Promise<QuizQuestionModel[]> {
     return await this.prismaDb.quiz_question.findMany({
       include: {
-        quiz: true,
+        quiz_section: true,
       },
     });
   }

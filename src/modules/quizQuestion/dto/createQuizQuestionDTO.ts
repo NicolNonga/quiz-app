@@ -1,5 +1,5 @@
 export interface CreateQuizQuestionDTO {
-  quiz_id: string,
+  quiz_section_id: string,
   question_text: string,
      
 }
