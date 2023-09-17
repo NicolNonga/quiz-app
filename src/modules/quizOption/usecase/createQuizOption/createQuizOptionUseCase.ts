@@ -18,7 +18,7 @@ export class createQuizOptionUsecase implements IuseCase<any, any> {
         ...data
        })
 
-       return Result.ok(findOptionText)
+       return Result.ok(quizOption)
     }
 
 }

@@ -1,5 +1,5 @@
 import { QuizOptionRepositoryImpl } from "../../repository/implementation/quizOptionRepositoryImp";
-import { CreateQuizOptionController } from "../createQuizOptionController";
+import { CreateQuizOptionController } from "./createQuizOptionController";
 import { createQuizOptionUsecase } from "./createQuizOptionUseCase";
 
 const  quizOptionRepository = new QuizOptionRepositoryImpl();

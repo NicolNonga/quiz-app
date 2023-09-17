@@ -1,7 +1,7 @@
-import { IController } from "../../core/interface/IController";
+import { IController } from "../../../core/interface/IController";
 import {Request, Response} from "express"
-import { createQuizOptionUsecase } from "./createQuizOption/createQuizOptionUseCase";
-import { Result } from "../../core/erroHandling/customResult";
+import { createQuizOptionUsecase } from "./createQuizOptionUseCase";
+import { Result } from "../../../core/erroHandling/customResult";
 
 export class  CreateQuizOptionController implements IController<any, any> {
  

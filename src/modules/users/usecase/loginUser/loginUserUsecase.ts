@@ -9,20 +9,20 @@ export class LoginUserUseCase implements IuseCase<LoginUserDTO, Promise<Result<U
     constructor(private readonly userRepository: IUserRepository, private comparePassword: ICrypt){
 
     }
-    public async   execute(data?: LoginUserDTO ) : Promise<Result<UserModel>> {
+    public async   execute(data: LoginUserDTO ) : Promise<Result<UserModel>> {
 
         const {username, password}= data
          // first of all we need to check if   the username Exists
          const user =  await this.userRepository.findByUserName(username);
 
          if(!user?.username || user?.username == undefined){
-             return Result.fail("user name or password incorrect")
+             return Result.fail("Palavra  Passe ou Username Incorreto")
          }
           if( await this.comparePassword.compare(password, user?.password)){
             return Result.ok(user)
           }
       
-          return Result.fail("user name or password incorrect")
+          return Result.fail("Palavra  Passe ou Username Incorreto")
     }
 
 }

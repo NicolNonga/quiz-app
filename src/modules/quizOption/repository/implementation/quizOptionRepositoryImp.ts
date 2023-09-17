@@ -1,3 +1,4 @@
+import { date } from "zod";
 import { db } from "../../../../utils/db.server";
 import { createQuizOptionDTO } from "../../dto/createQuizOptionDTO";
 import { QuizOptionModel } from "../../model/quizOptionModel";
@@ -15,11 +16,19 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
   update(data: createQuizOptionDTO, id: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
-  findAll(): Promise<QuizOptionModel[]> {
-    throw new Error("Method not implemented.");
+  public async findAll(): Promise<QuizOptionModel[]> {
+             return await this.prismaDb.quiz_option.findMany();
+
   }
-  findByQuizQuestion(quiz_question_id: string): Promise<QuizOptionModel[]> {
-    throw new Error("Method not implemented.");
+  
+ public  async findByQuizQuestion(data: string): Promise<QuizOptionModel[]> {
+
+   console.log
+            return await this.prismaDb.quiz_option.findMany({
+              where: {
+                quiz_question_id: data
+              }
+            })
   }
  
  public async  findOptionText(option_text: string): Promise<QuizOptionModel | any> {
