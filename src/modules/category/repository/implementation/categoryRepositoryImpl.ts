@@ -5,12 +5,13 @@ import { ICategoryRepository } from "../interaface/ICategoryRopository";
 
 export class CategoryRepositoryImpl implements ICategoryRepository {
   private DB = db;
-  public async create(data: CreateCategoryDTO | any): Promise<CategoryModel> {
-    console.log(data?.name);
+  public async create(name: string): Promise<CategoryModel> {
+     console.log(name)
+
     try {
       return await this.DB.category.create({
         data: {
-          name: data,
+          name
         },
       });
     } catch (error) {

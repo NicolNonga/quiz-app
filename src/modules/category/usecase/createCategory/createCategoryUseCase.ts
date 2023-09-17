@@ -10,15 +10,17 @@ export class CreateCategoryUseCase implements IuseCase<any, any>{
 
     }
   
-  public async  execute(data: CreateCategoryDTO) :Promise<Result <CategoryModel | any>>{
-        const {name} = data;
-
+  public async  execute(name: string) :Promise<Result <CategoryModel | any>>{
+     
+        
+       
         // ? first or before check if category name already exists 
         const category: CategoryModel | void = await   this.categoryRepository.findCategoryByName(name);
+        console.log("tnis is s", name)
 
         if(category?.name)  return Result.fail("Category Name already exist")
-
-        const catgoryCreated = await this.categoryRepository.create({name})
+            console.log(name)
+        const catgoryCreated = await this.categoryRepository.create(name)
         
         return Result.ok(catgoryCreated)
      
