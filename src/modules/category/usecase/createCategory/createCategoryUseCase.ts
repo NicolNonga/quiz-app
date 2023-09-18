@@ -19,11 +19,11 @@ export class CreateCategoryUseCase implements IuseCase<any, any>{
         console.log("tnis is s", name)
 
         if(category?.name)  return Result.fail("Category Name already exist")
-            console.log(name)
+       
         const catgoryCreated = await this.categoryRepository.create(name)
         
         return Result.ok(catgoryCreated)
      
     }
     
-}
+} 
