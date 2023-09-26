@@ -1,5 +1,10 @@
 export interface CreateQuizQuestionDTO {
-  quiz_section_id: string,
   question_text: string,
+  section?: Section []
      
+}
+
+interface  Section {
+  quiz_section_id: string,
+  
 }

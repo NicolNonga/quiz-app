@@ -34,21 +34,22 @@ model quiz_attempt {
 model quiz {
   id           String         @id @default(uuid())
   name         String         @unique
+  topic        String         @default("NULL")
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   quiz_section quiz_section[]
 }
 
 model quiz_section {
-  id            String          @id @default(uuid())
-  name          String          @unique
-  category_id   String
-  category      category        @relation(fields: [category_id], references: [id], onDelete: Cascade)
-  quiz_id       String
-  quiz          quiz            @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  quiz_question quiz_question[]
+  id               String             @id @default(uuid())
+  name             String             @unique
+  category_id      String
+  category         category           @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  quiz_id          String
+  quiz             quiz               @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  section_question section_question[]
 }
 
 model category {
@@ -70,14 +71,21 @@ model user_photo {
 }
 
 model quiz_question {
+  id               String             @id @default(uuid())
+  question_text    String
+  section_question section_question[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  quiz_option      quiz_option[]
+}
+
+model section_question {
   id              String       @id @default(uuid())
-  question_text   String
   quiz_section    quiz_section @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
   quiz_section_id String
 
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  quiz_option quiz_option[]
+  quiz_question quiz_question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id   String
 }
 
 model quiz_option {

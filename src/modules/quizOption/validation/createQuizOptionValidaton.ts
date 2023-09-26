@@ -1,7 +1,7 @@
 import {string, z} from 'zod'
 export const CreateQuizOptionValidation =  z.object({
     body: z.object({
-        option_text: z.string({
+/*         option_text: z.string({
             required_error: "option text é obrigatório"
         }),
         is_img: z.boolean({
@@ -12,6 +12,6 @@ export const CreateQuizOptionValidation =  z.object({
         }),
         quiz_question_id: z.string({
             required_error: 'quiz_question_id  é obrigatório'
-        })
+        }) */
     })
 })

@@ -23,26 +23,27 @@ export class UserRepository implements IUserRepository {
     } catch (error) {}
     throw new Error("Falha ao cadastra.");
   }
- async findByUserName(userName: string): Promise<UserModel> {
-
-       const user = await db.user.findFirst({
-        where: {
-            user_name: userName
-        }
-       })
-       return {username: user?.user_name, type_user: user?.typeUser, password: user?.password}
+  async findByUserName(userName: string): Promise<UserModel> {
+    const user = await db.user.findFirst({
+      where: {
+        user_name: userName,
+      },
+    });
+    return {
+      username: user?.user_name,
+      type_user: user?.typeUser,
+      password: user?.password,
+    };
   }
- async findAll(): Promise<UserModel[]> {
-  return (await db.user.findMany()).map(user =>{
+  async findAll(): Promise<UserModel[]> {
+    return (await db.user.findMany()).map((user) => {
       return {
         username: user.user_name,
         type_user: user.typeUser,
-        created_at : user.createdAt,
-        updated_at:  user.createdAt
-      }
-
-  
-     })
+        created_at: user.createdAt,
+        updated_at: user.createdAt,
+      };
+    });
   }
 
   findById(id: string): Promise<UserModel> {

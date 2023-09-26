@@ -9,11 +9,12 @@ import { Request, Response } from "express";
     private readonly createQuizQuestionUseCase: CreateQuizQuestionUseCase
   ) {}
   async handle(request: Request, response: Response) : Promise<Response> {
-    const { quiz_section_id, question_text } = request.body;
+    const { section, question_text } = request.body;
+     console.log(section)
     const quizQuestionOrError: Result<QuizQuestionModel | any> =
       await this.createQuizQuestionUseCase.execute(
         {
-          quiz_section_id: quiz_section_id,
+          section: section,
           question_text: question_text,
         },
         {}

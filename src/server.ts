@@ -17,6 +17,7 @@ import { createQuizOptionRouter } from "./router/quizOption/create_quiz_option.r
 import { findAllQuizOptionRouter } from "./router/quizOption/find_all_quiz_option.router";
 import { FindQuizOptionByQuizQuestionRouter } from "./router/quizOption/find_quiz_option_by_quiz_question.router";
 import  cors from 'cors'
+import { findAllCategoryRouter } from "./router/category/find_all_category.router";
 
 const app = express();
 app.use(express.json())
@@ -38,4 +39,5 @@ app.use(findAllQuizQuestionRouter)
 app.use(createQuizOptionRouter)
 app.use(findAllQuizOptionRouter)
 app.use(FindQuizOptionByQuizQuestionRouter)
+app.use(findAllCategoryRouter)
 app.listen(3333); 

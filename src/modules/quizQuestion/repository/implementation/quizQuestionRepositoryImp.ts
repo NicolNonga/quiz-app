@@ -9,7 +9,6 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
   public async create(data: CreateQuizQuestionDTO): Promise<QuizQuestionModel> {
     return await db.quiz_question.create({
       data: {
-        quiz_section_id: data.quiz_section_id,
         question_text: data.question_text,
       },
     });
@@ -37,9 +36,6 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
 
   public async findAll(): Promise<QuizQuestionModel[]> {
     return await this.prismaDb.quiz_question.findMany({
-      include: {
-        quiz_section: true,
-      },
     });
   }
 }

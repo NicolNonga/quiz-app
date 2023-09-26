@@ -17,3 +17,4 @@ export class FindQuizOptionByQuizQuestionUseCase implements IuseCase<any, any> {
     return Result.ok(quizOption);
   }
 }
+                                                              

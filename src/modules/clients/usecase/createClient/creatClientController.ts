@@ -23,7 +23,7 @@ export class CreateClientController implements IController<any, any>{
         if(!clientOrError.isSuccess){
              return response.status(400).send({message:clientOrError.error})
         }
-        console.log(clientOrError)
+     
         return response.status(201).send({message:"Cliente Criado com Sucesso"})
     }
 }

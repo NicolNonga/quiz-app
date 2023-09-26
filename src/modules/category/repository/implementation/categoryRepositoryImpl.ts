@@ -4,6 +4,7 @@ import CategoryModel from "../../model/categoryModel";
 import { ICategoryRepository } from "../interaface/ICategoryRopository";
 
 export class CategoryRepositoryImpl implements ICategoryRepository {
+
   private DB = db;
   public async create(name: string): Promise<CategoryModel> {
      console.log(name)
@@ -15,10 +16,20 @@ export class CategoryRepositoryImpl implements ICategoryRepository {
         },
       });
     } catch (error) {
-      console.log(error);
+     
       throw new Error("Ups falha ao cadastra categoria");
     }
   }
+ public async findAll(): Promise<[] | CategoryModel[]> {
+       return await this.DB.category.findMany({
+        orderBy: [
+          {
+            createdAt: 'desc'
+          }
+        ]
+       })
+  }
+
   public async findCategoryByName(
     category_nome: string
   ): Promise<CategoryModel | any> {

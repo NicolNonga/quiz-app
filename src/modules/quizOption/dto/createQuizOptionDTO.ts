@@ -1,6 +1,11 @@
 export interface createQuizOptionDTO {
-    option_text: string
-    is_img: boolean
-    is_correct: boolean,
     quiz_question_id: string
+    quiz_option: QuizOption[]
+   
+}
+
+export interface  QuizOption {
+    option_text: string,
+    is_correct: boolean,
+    is_img: boolean
 }

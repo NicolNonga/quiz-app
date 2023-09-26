@@ -31,13 +31,18 @@ export class QuizRepositoryImpl implements IQuizRepository {
   }
 
   public async findAllQuiz(): Promise<QuizModel[]> {
-    return await this.prismaDb.quiz.findMany();
+    return await this.prismaDb.quiz.findMany({orderBy:[
+      {
+        createdAt: 'desc'
+      }
+    ]});
   }
   public async findQuizById(quiz_id: string): Promise<QuizModel | any> {
     return await this.prismaDb.quiz.findUnique({
       where: {
         id: quiz_id,
       },
+    
     });
   }
 

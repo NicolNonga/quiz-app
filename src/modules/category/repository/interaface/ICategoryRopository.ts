@@ -5,5 +5,6 @@ import CategoryModel from "../../model/categoryModel";
     create(name: string): Promise<CategoryModel | void>
     findCategoryByName(category_nome: string): Promise<CategoryModel>
     editCatgory(id: string, data: CreateCategoryDTO): Promise<CategoryModel | void>
+    findAll(): Promise<CategoryModel[] | []>
 
  }
