@@ -26,8 +26,8 @@ export class QuizSectionRepository implements IQuizSectionRepository {
   public async findAll(): Promise<QuizSectionModel[]> {
     return await this.prismaDB.quiz_section.findMany({
       include: {
-        category: { select: { name: true } },
-        quiz: { select: { name: true } },
+        category: {},
+        quiz: {},
       },
     });
   }

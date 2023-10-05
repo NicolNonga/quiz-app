@@ -9,7 +9,8 @@ export class  FindByQuizQuestionController implements IController<any, any> {
 
           }
   public async  handle(request: Request, response:  Response): Promise<Response> {
-         const quiz_question_id =  request.query;
+         const {quiz_question_id} =  request.query;
+         console.log(quiz_question_id)
       
          const quizOptionData: Result<QuizOptionModel []> =  await  this.findByQuizQuestionUseCase.execute(
             quiz_question_id
@@ -17,7 +18,7 @@ export class  FindByQuizQuestionController implements IController<any, any> {
 
           if(!quizOptionData.isSuccess) return response.status(400).send(quizOptionData.error);
 
-          return response.status(200).send({data: quizOptionData})
+          return response.status(200).send( quizOptionData)
     }
 
 }

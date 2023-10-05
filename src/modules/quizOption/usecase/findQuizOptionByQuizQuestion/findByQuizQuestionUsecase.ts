@@ -10,9 +10,12 @@ export class FindQuizOptionByQuizQuestionUseCase implements IuseCase<any, any> {
     quiz_question_id: string | any,
     body?: any
   ): Promise<Result<QuizOptionModel[]>> {
+
+
     const quizOption = await this.quizOptionRepository.findByQuizQuestion(
       quiz_question_id
     );
+
 
     return Result.ok(quizOption);
   }

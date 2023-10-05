@@ -10,7 +10,7 @@ export class FindAllQuizQuestionController implements IController<any, any>{
      
          const allQuizQuestion = await this.findAllQuizQuestionUseCase.execute();
 
-          return response.status(200).send({data: allQuizQuestion})
+          return response.status(200).send(allQuizQuestion)
 
     }
 

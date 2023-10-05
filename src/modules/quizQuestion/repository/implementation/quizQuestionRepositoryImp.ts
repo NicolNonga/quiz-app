@@ -1,4 +1,5 @@
 import { db } from "../../../../utils/db.server";
+import { QuizOptionModel } from "../../../quizOption/model/quizOptionModel";
 import { CreateQuizQuestionDTO } from "../../dto/createQuizQuestionDTO";
 import QuizQuestionModel from "../../model/quizQuestionModel";
 import { IQuizQuestionRepository } from "../interface/IQuizQuestionRepository";
@@ -36,6 +37,13 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
 
   public async findAll(): Promise<QuizQuestionModel[]> {
     return await this.prismaDb.quiz_question.findMany({
+      
+      orderBy: [
+        {
+          createdAt: 'desc'
+        }
+      ]
+  
     });
   }
 }

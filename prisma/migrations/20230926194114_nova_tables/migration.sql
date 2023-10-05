@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `quiz` MODIFY `topic` VARCHAR(191) NOT NULL DEFAULT 'NULL';
