@@ -18,6 +18,7 @@ import { findAllQuizOptionRouter } from "./router/quizOption/find_all_quiz_optio
 import { FindQuizOptionByQuizQuestionRouter } from "./router/quizOption/find_quiz_option_by_quiz_question.router";
 import  cors from 'cors'
 import { findAllCategoryRouter } from "./router/category/find_all_category.router";
+import { dashboardQuizRouter } from "./router/dashboard_quiz/find_all_dashboard";
 
 const app = express();
 app.use(express.json())
@@ -40,4 +41,5 @@ app.use(createQuizOptionRouter)
 app.use(findAllQuizOptionRouter)
 app.use(FindQuizOptionByQuizQuestionRouter)
 app.use(findAllCategoryRouter)
+app.use(dashboardQuizRouter)
 app.listen(3333); 
