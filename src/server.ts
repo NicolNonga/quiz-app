@@ -19,6 +19,7 @@ import { FindQuizOptionByQuizQuestionRouter } from "./router/quizOption/find_qui
 import  cors from 'cors'
 import { findAllCategoryRouter } from "./router/category/find_all_category.router";
 import { dashboardQuizRouter } from "./router/dashboard_quiz/find_all_dashboard";
+import { updateCategoryRouter } from "./router/category/update-category.router";
 
 const app = express();
 app.use(express.json())
@@ -33,6 +34,7 @@ app.use(findAllQuizRouter)
 app.use(updateQuizRouter)
 app.use(deleteQuizRouter)
 app.use(create_category)
+app.use(updateCategoryRouter)
 app.use(createQuizSectionRouter)
 app.use(findAllQuizSectionRouter)
 app.use(quizQuestionRouter)

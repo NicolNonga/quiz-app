@@ -6,14 +6,14 @@ import { Request, Response } from "express";
 export class UpdateQuizController implements IController<any, any> {
   constructor(private readonly quizUpdateUseCase: UpdateQuizUseCae) {}
 
-  public async handle(request: Request, response?: Response): Promise<any> {
+  public async handle(request: Request, response: Response): Promise<any> {
     const { quiz_id } = request.params;
-    const { name, quiz_category } = request.body;
+    const { name, topic } = request.body;
    
    const quizUpdateOrError= await this.quizUpdateUseCase.execute(
       {
         name,
-        quiz_category,
+        topic,
       },
       quiz_id
     );

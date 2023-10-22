@@ -1,4 +1,4 @@
 export interface UpdateQuizDTO {
-    quiz_category?: string,
-    name?: string
+    topic: string,
+    name: string
 }

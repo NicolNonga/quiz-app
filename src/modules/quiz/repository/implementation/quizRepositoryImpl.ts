@@ -56,6 +56,7 @@ export class QuizRepositoryImpl implements IQuizRepository {
       },
       data: {
         name: quiz_data.name,
+        topic: quiz_data.topic
       },
     });
   }
