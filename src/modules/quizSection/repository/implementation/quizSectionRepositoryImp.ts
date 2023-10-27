@@ -31,4 +31,18 @@ export class QuizSectionRepository implements IQuizSectionRepository {
       },
     });
   }
+
+  public async  edit(quiz_section_id: string, data: CreateQuizSectionDTO): Promise<void> {
+                console.log(quiz_section_id, data)
+         await  this.prismaDB.quiz_section.update({
+          where: {
+            id: quiz_section_id
+          },
+          data: {
+            name: data.name,
+            quiz_id: data.quiz_id,
+            category_id: data.category_id
+          }
+        })
+  }
 }
