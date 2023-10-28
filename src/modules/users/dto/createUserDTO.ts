@@ -5,6 +5,6 @@ export interface createUserDTO {
 }
 
 export enum TypeUser {
-    user= "USER",
+    user= "User",
     role= "ADMIN"
 }

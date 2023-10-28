@@ -10,7 +10,7 @@ export class UserRepository implements IUserRepository {
         data: {
           user_name: userData.username,
           password: userData.password,
-          typeUser: "User",
+          typeUser:  userData.type_user,
         },
       });
 

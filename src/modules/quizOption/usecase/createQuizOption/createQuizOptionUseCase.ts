@@ -18,6 +18,9 @@ export class createQuizOptionUsecase implements IuseCase<any, any> {
        const quizOption = await this.quizOptionRepository.create({
         ...data
        }) */
+       
+
+       console.log(quiz_option)
 
 
         for(let i = 0;  i< quiz_option.length ; i ++){
