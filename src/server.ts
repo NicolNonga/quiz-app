@@ -21,6 +21,7 @@ import { findAllCategoryRouter } from "./router/category/find_all_category.route
 import { dashboardQuizRouter } from "./router/dashboard_quiz/find_all_dashboard";
 import { updateCategoryRouter } from "./router/category/update-category.router";
 import { updateQuizSessionRouter } from "./router/quiz_section/update-quiz-section.router";
+import { getQuestionBySection } from "./router/sectionQuestion/get-question-by-section.router";
 
 const app = express();
 app.use(express.json())
@@ -46,4 +47,5 @@ app.use(FindQuizOptionByQuizQuestionRouter)
 app.use(findAllCategoryRouter)
 app.use(dashboardQuizRouter)
 app.use(updateQuizSessionRouter)
+app.use(getQuestionBySection)
 app.listen(3333); 

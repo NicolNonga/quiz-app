@@ -3,6 +3,31 @@ import { ISectionQuestionRepository, SectionQuestionDTO } from "../interface/ISe
 
 export class SectionQuestionRepositoryImpl implements ISectionQuestionRepository{
   
+  
+ public async getQuestionBysection(quiz_section_id: string): Promise<any> {
+    
+              try {
+                 return await db.section_question.findMany({
+                  where: {
+                    quiz_section_id: quiz_section_id
+                  },
+                  include: {
+                    quiz_question: {
+                      include: {
+                        quiz_option: true
+                      }
+                    }
+                    
+                  }
+                 })
+              } catch (error) {
+
+                 throw new Error('erro')
+                console.log("this is just a test", error)
+                
+              }
+  }
+  
   public async  create(data: SectionQuestionDTO): Promise<void> {
           try {
               await db.section_question.create({

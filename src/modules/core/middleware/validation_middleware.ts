@@ -1,4 +1,4 @@
-import express, {Request, Response, NextFunction} from 'express'
+import {Request, Response, NextFunction} from 'express'
 import  {z, AnyZodObject} from 'zod'
 
 export const validationMiddleware = (shema: AnyZodObject)=> async(req: Request, res: Response, next: NextFunction)=>{

@@ -26,7 +26,7 @@ export class CreateQuizQuestionUseCase implements IuseCase<any, any> {
       question_text,
     });
 
-    console.log(section)
+    
        section?.forEach(async(data) =>{
           console.log(data)
            await  this.sectionQuestionRepository.create({
