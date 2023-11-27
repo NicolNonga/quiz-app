@@ -1,6 +1,6 @@
 export interface createQuizOptionDTO {
     quiz_question_id: string
-    quiz_option: QuizOption[]
+    quiz_option: string
    
 }
 

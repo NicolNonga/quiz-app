@@ -10,9 +10,13 @@ export class  CreateQuizOptionController implements IController<any, any> {
        }
   public async   handle(request: Request, response:  Response): Promise<Response> {
           const {quiz_option,quiz_question_id } = request.body;
+          const files = request.files
+
+          //console.log(files)
+          console.log(JSON.parse(quiz_option))
 
           const quizOption: Result<any> =await this.createQuizOptionUseCase
-          .execute({quiz_option,quiz_question_id }, {})
+          .execute({quiz_option,quiz_question_id }, files)
 
           if(!quizOption.isSuccess) return response.status(400).send({message: quizOption.error})
           return response.status(201).send({message:"quiz option criado com sucesso"})
