@@ -3,13 +3,14 @@ import { db } from "../../../../utils/db.server";
 import { QuizOption, createQuizOptionDTO } from "../../dto/createQuizOptionDTO";
 import { QuizOptionModel } from "../../model/quizOptionModel";
 import { IQuizOptionRepository } from "../interface/IQuizOptionRepository";
+import { quiz_option } from "@prisma/client";
 
 export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
   private prismaDb = db;
-  public async create(quizOption: QuizOption, quiz_question_id: string ): Promise<void> {
+  public async create(quizOption: QuizOption, quiz_question_id: string ): Promise<quiz_option> {
     console.log(quizOption)
             try {
-               await this.prismaDb.quiz_option.create({
+            const quiz=   await this.prismaDb.quiz_option.create({
                 data: {
                  quiz_question_id: quiz_question_id,
                   option_text:quizOption?.option_text,
@@ -18,7 +19,9 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
           
                 },
               });
+                 return quiz
             } catch (error) {
+              return {} as quiz_option
               console.log(error)
             }
   }
@@ -26,7 +29,11 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
     throw new Error("Method not implemented.");
   }
   public async findAll(): Promise<QuizOptionModel[]> {
-    return await this.prismaDb.quiz_option.findMany();
+    return await this.prismaDb.quiz_option.findMany({
+       include:{
+        quiz_attachment_option:true
+       }
+    });
   }
 
   public async findByQuizQuestion(data: string): Promise<QuizOptionModel[]> {
@@ -34,6 +41,10 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
       where: {
         quiz_question_id: data,
       },
+      include:{
+        quiz_attachment_option:{},
+        
+      }
     });
   }
 

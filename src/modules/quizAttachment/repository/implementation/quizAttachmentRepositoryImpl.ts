@@ -1,4 +1,5 @@
 
+import { quiz_attachment } from "@prisma/client";
 import { db } from "../../../../utils/db.server";
 import { CreateQuizAttachmentDTO } from "../../dto/createQuizAttachmentDto";
 import { IQuizAttachmentInterface } from "../interface/quizAttachmentRepositoryInterface";
@@ -6,14 +7,16 @@ import { IQuizAttachmentInterface } from "../interface/quizAttachmentRepositoryI
 export class QuizAttachmentRepositoryImp implements IQuizAttachmentInterface{
   
   
-  async  create(payload: CreateQuizAttachmentDTO): Promise<void> {
+  async  create(payload: CreateQuizAttachmentDTO): Promise<quiz_attachment> {
               try {
-                  await db.quiz_attachment.create({
+                const quiz_attachem=  await db.quiz_attachment.create({
                     data: {
                         ...payload
                     }
                   })
+                  return quiz_attachem
               } catch (error) {
+                return {} as quiz_attachment
                  console.log("ups houve um erro")
               }
     }

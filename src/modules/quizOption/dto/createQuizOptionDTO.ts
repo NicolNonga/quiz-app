@@ -6,6 +6,6 @@ export interface createQuizOptionDTO {
 
 export interface  QuizOption {
     option_text: string,
-    is_correct:  any,
-    is_img:  any
+    is_correct:  boolean,
+    is_img:  boolean
 }
