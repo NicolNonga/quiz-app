@@ -12,7 +12,7 @@ export class CreateUserController implements IController<any, any>{
 
     }
    
-   async handle(request?: Request, response?: Response):Promise<Response> {
+   async handle(request: Request, response: Response):Promise<Response> {
       
         const {username, type_user, password}=  request.body;
         const userOrError : Result<UserModel | any>  = await this.createUserUseCase.execute({

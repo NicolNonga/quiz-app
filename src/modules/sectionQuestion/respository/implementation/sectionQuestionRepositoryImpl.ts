@@ -13,9 +13,21 @@ export class SectionQuestionRepositoryImpl implements ISectionQuestionRepository
                   },
                   include: {
                     quiz_question: {
+                    
                       include: {
-                        quiz_option: true
+                        
+                        quiz_option: {
+                          include: {
+                            quiz_attachment_option:{
+                              include:{
+                                quiz_attacment:{}
+                              }
+                            }
+                          }
+                        }
+                        
                       }
+                    
                     }
                     
                   }

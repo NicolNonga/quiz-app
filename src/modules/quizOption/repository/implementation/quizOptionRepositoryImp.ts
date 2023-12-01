@@ -42,7 +42,11 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
         quiz_question_id: data,
       },
       include:{
-        quiz_attachment_option:{},
+        quiz_attachment_option:{
+          include:{
+            quiz_attacment:{}
+          }
+        },
         
       }
     });
