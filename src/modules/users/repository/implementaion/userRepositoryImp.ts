@@ -19,9 +19,12 @@ export class UserRepository implements IUserRepository {
         type_user: user.typeUser,
         created_at: user.createdAt,
         updated_at: user.updatedAt,
+        password: userData.password
       };
-    } catch (error) {}
-    throw new Error("Falha ao cadastra.");
+    } catch (error) {
+      throw new Error("Falha ao cadastra.");
+    }
+
   }
   async findByUserName(userName: string): Promise<UserModel> {
     const user = await db.user.findFirst({
@@ -30,9 +33,9 @@ export class UserRepository implements IUserRepository {
       },
     });
     return {
-      username: user?.user_name,
-      type_user: user?.typeUser,
-      password: user?.password,
+      username: user?.user_name!,
+      type_user: user?.typeUser!,
+      password: user?.password!,
     };
   }
   async findAll(): Promise<UserModel[]> {
