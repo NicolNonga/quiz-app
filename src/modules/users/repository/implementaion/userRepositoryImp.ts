@@ -39,7 +39,11 @@ export class UserRepository implements IUserRepository {
     };
   }
   async findAll(): Promise<UserModel[]> {
-    return (await db.user.findMany()).map((user) => {
+    return (await db.user.findMany({
+       orderBy: {
+        createdAt: 'desc'
+       }
+    })).map((user) => {
       return {
         username: user.user_name,
         type_user: user.typeUser,
