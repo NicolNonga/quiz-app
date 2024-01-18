@@ -12,6 +12,7 @@ export class FindAllQuizUseCase implements IuseCase<any, any> {
    async execute(request?: any, body?: any):  Promise<Result<QuizModel[]>> {
         
         const quiz = await this.quizRepository.findAllQuiz();
+        console.log("quiz", {quiz})
         return Result.ok(quiz)
     }
 } 
