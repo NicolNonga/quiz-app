@@ -9,7 +9,7 @@ export class FindAllQuizController implements  IController <any, any> {
 
      public async handle(request: Request, response: Response) : Promise<Response> {
          
-        const quiz = await this.findAllQuizUseCase.execute();
-        return response.status(200).send({data:"", message:"teste"})
+        const  data = await this.findAllQuizUseCase.execute();
+        return response.status(200).send(data)
      }
 }

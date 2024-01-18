@@ -48,7 +48,7 @@ export class UserRepository implements IUserRepository {
         username: user.user_name,
         type_user: user.typeUser,
         created_at: user.createdAt,
-        updated_at: user.createdAt,
+        updated_at: user.createdAt, 
       };
     });
   }
