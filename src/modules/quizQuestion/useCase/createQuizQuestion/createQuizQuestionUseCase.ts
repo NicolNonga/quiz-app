@@ -16,7 +16,7 @@ export class CreateQuizQuestionUseCase implements IuseCase<any, any> {
     data: CreateQuizQuestionDTO,
     body: any
   ): Promise<Result<QuizQuestionModel> | any> {
-    const { question_text, section } = data;
+    const { question_text, section, value } = data;
     // first validate if quiz_text_exit or not
     const find_quiz_text =
       await this.quizQuestionRepository.findQuizQuestionText(question_text);
@@ -24,11 +24,12 @@ export class CreateQuizQuestionUseCase implements IuseCase<any, any> {
 
     const quiz_question = await this.quizQuestionRepository.create({
       question_text,
+      value
     });
 
     
        section?.forEach(async(data) =>{
-          console.log(data)
+  
            await  this.sectionQuestionRepository.create({
             quiz_section_id: data.quiz_section_id,
             question_id:  quiz_question.id

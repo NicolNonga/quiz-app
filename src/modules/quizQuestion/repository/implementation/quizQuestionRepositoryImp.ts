@@ -11,6 +11,7 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
     return await db.quiz_question.create({
       data: {
         question_text: data.question_text,
+        value: Number(data.value)
       },
     });
   }

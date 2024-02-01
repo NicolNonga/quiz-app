@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `quiz` MODIFY `topic` VARCHAR(191) NOT NULL DEFAULT 'NULL';
+
+-- AlterTable
+ALTER TABLE `quiz_question` ADD COLUMN `value` INTEGER NOT NULL DEFAULT 0;

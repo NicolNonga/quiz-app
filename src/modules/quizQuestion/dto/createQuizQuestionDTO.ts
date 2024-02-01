@@ -1,5 +1,6 @@
 export interface CreateQuizQuestionDTO {
   question_text: string,
+  value: string
   section?: Section []
      
 }
