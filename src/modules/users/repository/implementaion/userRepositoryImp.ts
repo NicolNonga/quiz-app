@@ -36,6 +36,7 @@ export class UserRepository implements IUserRepository {
       username: user?.user_name!,
       type_user: user?.typeUser!,
       password: user?.password!,
+      id: user?.id
     };
   }
   async findAll(): Promise<UserModel[]> {
