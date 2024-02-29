@@ -23,6 +23,8 @@ import { updateCategoryRouter } from "./router/category/update-category.router";
 import { updateQuizSessionRouter } from "./router/quiz_section/update-quiz-section.router";
 import { getQuestionBySection } from "./router/sectionQuestion/get-question-by-section.router";
 import { quizAttempteRouter } from "./router/quizAttempted/quiz_attempted.router";
+import { createQuizSessionUsers } from "./router/quizSessionUser/create_quiz_session_user.router";
+import { listAllQuizSectionUser } from "./router/quizSessionUser/list_all.router";
 
 const app = express();
 app.use(express.json())
@@ -50,4 +52,6 @@ app.use(dashboardQuizRouter)
 app.use(updateQuizSessionRouter)
 app.use(getQuestionBySection)
 app.use(quizAttempteRouter)
+app.use(createQuizSessionUsers)
+app.use(listAllQuizSectionUser)
 app.listen(3333); 

@@ -23,4 +23,4 @@ export class CreateQuizSectionController implements IController<any, any> {
     return response.status(201).send({message: "Quiz section criado com sucesso"})
     }
     
-}
+} 
