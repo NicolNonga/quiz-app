@@ -8,7 +8,7 @@ export class QuizSectionRepository implements IQuizSectionRepository {
 
   public async create(data: CreateQuizSectionDTO): Promise<QuizSectionModel> {
 
-    console.log("data", data?.category_id)
+ 
     return await this.prismaDB.quiz_section.create({
       data: {
         name: data.name,

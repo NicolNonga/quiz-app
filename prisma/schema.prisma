@@ -49,6 +49,7 @@ model quiz {
   name         String         @unique
   topic        String         @default("NULL")
   createdAt    DateTime       @default(now())
+
   updatedAt    DateTime       @updatedAt
   quiz_section quiz_section[]
 }

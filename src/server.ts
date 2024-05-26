@@ -25,6 +25,7 @@ import { getQuestionBySection } from "./router/sectionQuestion/get-question-by-s
 import { quizAttempteRouter } from "./router/quizAttempted/quiz_attempted.router";
 import { createQuizSessionUsers } from "./router/quizSessionUser/create_quiz_session_user.router";
 import { listAllQuizSectionUser } from "./router/quizSessionUser/list_all.router";
+import { listAllQuizSectionByQuiz } from "./router/quizSessionUser/qui_section_users.router";
 
 const app = express();
 app.use(express.json())
@@ -54,4 +55,5 @@ app.use(getQuestionBySection)
 app.use(quizAttempteRouter)
 app.use(createQuizSessionUsers)
 app.use(listAllQuizSectionUser)
+app.use(listAllQuizSectionByQuiz)
 app.listen(3333); 

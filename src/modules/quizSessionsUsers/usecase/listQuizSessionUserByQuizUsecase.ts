@@ -3,15 +3,15 @@ import { QuizSessionUsersRepository } from "../repository/quiz_session_users_rep
 
 
 export interface ListQuizSessionUserInterface {
-    user_id: string,
-    quiz_section_id?: string
+    user_id?: string,
+    quiz_section_id: string
 }
-export  class ListQuizSessionUserUseCase implements IuseCase<any, any> {
+export  class ListQuizSessionByQuizUseCase implements IuseCase<any, any> {
     constructor(private readonly quizSessitionUser: QuizSessionUsersRepository) {
 
     }
    async execute(data: ListQuizSessionUserInterface, body?: any) {
-        return await this.quizSessitionUser.findByUserAndQuiz(data.user_id)
+        return await this.quizSessitionUser.findByQuizSesstion(data.quiz_section_id)
     }
     
 }

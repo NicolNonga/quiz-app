@@ -29,7 +29,7 @@ export class UserRepository implements IUserRepository {
   async findByUserName(userName: string): Promise<UserModel> {
     const user = await db.user.findFirst({
       where: {
-        user_name: userName,
+        user_name: userName,findByQuizSesstion
       },
     });
     return {
@@ -49,8 +49,8 @@ export class UserRepository implements IUserRepository {
         username: user.user_name,
         type_user: user.typeUser,
         created_at: user.createdAt,
-        updated_at: user.createdAt, 
-      };
+        id: user.id,
+        updated_at: user.createdAt,       };
     });
   }
 
