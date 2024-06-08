@@ -29,7 +29,7 @@ export class UserRepository implements IUserRepository {
   async findByUserName(userName: string): Promise<UserModel> {
     const user = await db.user.findFirst({
       where: {
-        user_name: userName,findByQuizSesstion
+        user_name: userName,
       },
     });
     return {

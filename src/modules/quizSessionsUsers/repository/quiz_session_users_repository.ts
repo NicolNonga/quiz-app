@@ -6,6 +6,7 @@ export interface quizUserRepositoryInterface {
     create(data: createQuizSesstionUserI): Promise<void>
     delete(data: deleteQuizSesstionUserInterface): Promise<void>
     findByQuizSesstion(quiz_section_id: string): Promise<any>
+    completeQuizSection(quiz_section_id: string, user_id: string): Promise<any>
 }
 interface createQuizSesstionUserI {
     user_id: string
@@ -15,6 +16,7 @@ interface deleteQuizSesstionUserInterface extends createQuizSesstionUserI{
 
 }
 export class QuizSessionUsersRepository implements quizUserRepositoryInterface {
+
     
    async delete(data: deleteQuizSesstionUserInterface): Promise<void> {
             try {
@@ -70,6 +72,7 @@ export class QuizSessionUsersRepository implements quizUserRepositoryInterface {
             {
                 where: {
                     quiz_section_id: quiz_id,
+                  
                 },
                 include: {
                     user: {
@@ -79,10 +82,23 @@ export class QuizSessionUsersRepository implements quizUserRepositoryInterface {
             }
         )
         if (quizSessionUser) {
-            return quizSessionUser.map((users) => users.user)
+            return quizSessionUser
         }
 
         return []
     }
 
+
+    async completeQuizSection(quiz_section_id: string, user_id: string): Promise<any> {
+          await db.quiz_section_users.updateMany({
+            where : {
+                user_id: user_id,
+                quiz_section_id: quiz_section_id
+                
+            },
+            data: {
+                is_completed :  true
+            }
+          })
+    }
 }

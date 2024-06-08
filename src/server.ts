@@ -26,6 +26,8 @@ import { quizAttempteRouter } from "./router/quizAttempted/quiz_attempted.router
 import { createQuizSessionUsers } from "./router/quizSessionUser/create_quiz_session_user.router";
 import { listAllQuizSectionUser } from "./router/quizSessionUser/list_all.router";
 import { listAllQuizSectionByQuiz } from "./router/quizSessionUser/qui_section_users.router";
+import { removeQuizSectionUserRouter } from "./router/quizSessionUser/remove_quiz_section_user.router";
+import { completedQuizSessionUsersRouter } from "./router/quizSessionUser/completed_quiz_section_user.router";
 
 const app = express();
 app.use(express.json())
@@ -56,4 +58,6 @@ app.use(quizAttempteRouter)
 app.use(createQuizSessionUsers)
 app.use(listAllQuizSectionUser)
 app.use(listAllQuizSectionByQuiz)
+app.use(removeQuizSectionUserRouter)
+app.use(completedQuizSessionUsersRouter)
 app.listen(3333); 

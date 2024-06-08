@@ -11,24 +11,27 @@ datasource db {
 }
 
 model user {
-  id           String         @id @default(uuid())
-  user_name    String         @unique
-  password     String
-  typeUser     Role           @default(User)
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  quiz_attempt quiz_attempt[]
-  user_photo   user_photo[]
-  quiz_section_users quiz_section_users[]
+  id                           String                         @id @default(uuid())
+  user_name                    String                         @unique
+  password                     String
+  typeUser                     Role                           @default(User)
+  createdAt                    DateTime                       @default(now())
+  updatedAt                    DateTime                       @updatedAt
+  quiz_attempt                 quiz_attempt[]
+  user_photo                   user_photo[]
+  quiz_section_users           quiz_section_users[]
+  quiz_section_user_avalition quiz_section_user_avalition[]
 }
 
-model quiz_section_users{
-    id         String @id @default(uuid())
-    user       user  @relation(fields: [user_id], references: [id], onDelete: Cascade)
-     quiz_section    quiz_section @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
-    quiz_section_id  String
-    user_id    String
-
+model quiz_section_users {
+  id              String       @id @default(uuid())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @default(now())
+  user            user         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  quiz_section    quiz_section @relation(fields: [quiz_section_id], references: [id], onDelete: Cascade)
+  is_completed    Boolean      @default(false)
+  quiz_section_id String
+  user_id         String
 }
 
 model quiz_attempt {
@@ -45,27 +48,28 @@ model quiz_attempt {
 }
 
 model quiz {
-  id           String         @id @default(uuid())
-  name         String         @unique
-  topic        String         @default("NULL")
-  createdAt    DateTime       @default(now())
+  id        String   @id @default(uuid())
+  name      String   @unique
+  topic     String   @default("NULL")
+  createdAt DateTime @default(now())
 
   updatedAt    DateTime       @updatedAt
   quiz_section quiz_section[]
 }
 
 model quiz_section {
-  id               String             @id @default(uuid())
-  name             String             @unique
-  category_id      String
-  category         category           @relation(fields: [category_id], references: [id], onDelete: Cascade)
-  quiz_id          String
-  quiz             quiz               @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  quiz_attempt     quiz_attempt[]
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  section_question section_question[]
-  quiz_section_users  quiz_section_users []
+  id                           String                         @id @default(uuid())
+  name                         String                         @unique
+  category_id                  String
+  category                     category                       @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  quiz_id                      String
+  quiz                         quiz                           @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_attempt                 quiz_attempt[]
+  createdAt                    DateTime                       @default(now())
+  updatedAt                    DateTime                       @updatedAt
+  section_question             section_question[]
+  quiz_section_users           quiz_section_users[]
+  quiz_section_user_avalition quiz_section_user_avalition[]
 }
 
 model category {
@@ -134,6 +138,16 @@ model quiz_attachment {
   quiz_attachment_option quiz_attachment_option[]
   createdAt              DateTime                 @default(now())
   updatedAt              DateTime                 @updatedAt
+}
+
+model quiz_section_user_avalition {
+  id              String         @id @default(uuid())
+  user            user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id         String
+  quiz_section_id String
+  quiz_section    quiz_section[]
+  punctuation      Int
+  
 }
 
 enum Role {
