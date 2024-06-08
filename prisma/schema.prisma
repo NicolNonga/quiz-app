@@ -147,6 +147,9 @@ model quiz_section_user_avalition {
   quiz_section_id String
   quiz_section    quiz_section[]
   punctuation      Float
+  total_pergunta_acertas Int  @default(0)
+  total_perguntas_erradas Int @default(0)
+
   
 }
 

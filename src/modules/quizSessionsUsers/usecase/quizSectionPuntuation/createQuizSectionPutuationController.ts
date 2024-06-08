@@ -11,12 +11,14 @@ export class CreateQuizSectionUserPuntuationController implements IController<an
 
   async  handle(request: Request, response: Response): Promise<Response> {
        
-        const {user_id, quiz_section_id, puntuation} = request.body
+        const {user_id, quiz_section_id, puntuation, total_perguntas_erradas, total_pergunta_acertas} = request.body
 
        await this.createQuizSectionUserPutuationUseCase.execute({
              user_id,
              quiz_section_id,
-             puntuation
+             puntuation,
+             total_perguntas_erradas,
+             total_pergunta_acertas
         })
 
         return response.status(201).send({message: "Pontuação Salvo Com Sucesso"})

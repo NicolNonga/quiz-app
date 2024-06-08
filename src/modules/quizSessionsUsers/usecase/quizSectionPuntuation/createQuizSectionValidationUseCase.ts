@@ -6,13 +6,16 @@ export class CreateQuizSectionPuntuationUseCase implements IuseCase<any, any>{
 
     }
     async execute(data: puntuationInterface, body?: any) {
-        const { quiz_section_id, user_id, puntuation } = data
+        const { quiz_section_id, user_id, puntuation , total_pergunta_acertas, total_perguntas_erradas} = data
 
         try {
             await this.creatQuizSectionValidationRepo.savePuntationUser({
                 quiz_section_id,
                 user_id,
-                puntuation
+                puntuation,
+                total_pergunta_acertas,
+                total_perguntas_erradas
+                
             })
         } catch (error) {
               console.log(error)
