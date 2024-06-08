@@ -27,13 +27,14 @@ export class QuizSectionUserPuntuationRepository implements QuizSectionUserPuntu
         }
     }
    async showPuntationUser(data: Omit<puntuationInterface, "puntuation">): Promise<any> {
-            const  quiz_sectionValiation=  await db.quiz_section_user_avalition.findFirst({
+           console.log("data",data.user_id,)
+            const  quiz_sectionValiation=  await db.quiz_section_user_avalition.findMany({
              where: {
                 user_id: data.user_id,
                 quiz_section_id :  data.quiz_section_id
              }
            })
-           if(!quiz_sectionValiation)  return  {}
+           if(!quiz_sectionValiation)  return   []
            return quiz_sectionValiation
     }
 
