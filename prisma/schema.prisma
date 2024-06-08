@@ -146,7 +146,7 @@ model quiz_section_user_avalition {
   user_id         String
   quiz_section_id String
   quiz_section    quiz_section[]
-  punctuation      Int
+  punctuation      Float
   
 }
 
