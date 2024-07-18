@@ -8,7 +8,7 @@ quizAttempteRouter.post('/quiz-attempted',  (request:Request, response:Response)
     return quizAttemptedController.handle(request, response)
    })
    
-   quizAttempteRouter.get('/quiz_attempted', (request:Request, response: Response)=>{
+   quizAttempteRouter.get('/quiz-attempted/:user_id/:quiz_section_id', (request:Request, response: Response)=>{
     return listquizAttemptedController.handle(request, response)
    })
 

@@ -6,5 +6,5 @@ const createQuizSectionUserPuntuationRepository = new QuizSectionUserPuntuationR
 const showQuizSectionPuntuationUseCase  = new ShowQuizSectionPuntuationUseCase(createQuizSectionUserPuntuationRepository);
 const showQuizSectionUserPuntuationController = new ShowQuizSectionPutuationController(showQuizSectionPuntuationUseCase)
 
-console.log("tesds")
+
 export {showQuizSectionUserPuntuationController}

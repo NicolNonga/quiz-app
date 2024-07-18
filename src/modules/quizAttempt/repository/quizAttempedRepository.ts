@@ -11,6 +11,21 @@ export class QuizAttemptedRepository implements saveQuizAttemptedInterfaceRepo {
             where: {
               quiz_section_id: data.quiz_section_id,
               user_id: data.user_id
+            },
+            include: {
+              quiz_section:{
+                include: {
+                  section_question:{
+                    include: {
+                      quiz_question: {
+                        include: {
+                          quiz_option: {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
 
            })

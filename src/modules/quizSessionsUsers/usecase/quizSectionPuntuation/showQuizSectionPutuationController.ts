@@ -8,7 +8,7 @@ export class ShowQuizSectionPutuationController  implements IController<any, any
     }
   
   async  handle(request: Request, response: Response): Promise<any> {
-     const {user_id, quiz_section_id} = request.body;
+     const {user_id, quiz_section_id} = request.params;
 
          console.log(user_id, quiz_section_id)
 

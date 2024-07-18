@@ -61,7 +61,9 @@ export class QuizSessionUsersRepository implements quizUserRepositoryInterface {
             }
         )
         if (quizSessionUser) {
-            return quizSessionUser.map((quiz) => quiz.quiz_section)
+            return quizSessionUser.map((quiz) =>{
+                return {quiz: quiz.quiz_section,  completed: quiz.is_completed}
+            })
         }
 
         return []
