@@ -6,11 +6,18 @@ import { saveQuizAttemptedInterface, saveQuizAttemptedInterfaceRepo } from "../u
 export class QuizAttemptedRepository implements saveQuizAttemptedInterfaceRepo {
   
   public async  listByUserAndQuizSection(data: Omit<saveQuizAttemptedInterface, "option_id">): Promise<any> {
+     console.log("data",data)
        try {
         return    await  db.quiz_attempt.findMany({
+
             where: {
-              quiz_section_id: data.quiz_section_id,
-              user_id: data.user_id
+              AND: [
+                {
+                  quiz_section_id: data.quiz_section_id,
+                  user_id: data.user_id
+                }
+              ]
+      
             },
             include: {
               quiz_section:{

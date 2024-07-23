@@ -8,6 +8,7 @@ export class ListQuizAttempedByUseUseCase implements IuseCase<any, any>{
     }
   
   async  execute(data: Omit<saveQuizAttemptedInterface, "option_id">) {
+    console.log(data)
        return   await this.quizAttempetedRepository.listByUserAndQuizSection({...data})
     }
 

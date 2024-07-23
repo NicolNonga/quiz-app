@@ -9,7 +9,8 @@ export class ListQuizAttempedController implements IController<any, any> {
 
     }
     public async handle(request: Request, response: Response): Promise<Response> {
-        const { user_id, quiz_section_id } = request.body;
+        const { user_id, quiz_section_id } = request.params;
+        console.log(user_id)
 
     const data=  await this.saveQuizAttemptUseCase
             .execute({ user_id, quiz_section_id })

@@ -16,6 +16,7 @@ export class SaveQuizAttemptedByUserUsseCase implements IuseCase<any, any> {
     }
    
    async execute(data:saveQuizAttemptedInterface, body?: any) {
+    console.log(data)
           await this.quizAttempetedRepository.create(data)
     }
     
