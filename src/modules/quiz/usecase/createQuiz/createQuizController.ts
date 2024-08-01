@@ -13,11 +13,11 @@ export class CreateQuizController implements IController <any, any>{
 
  }
 
-public async handle(request?: Request, response?: Response) {
-    const {name, quiz_category} = request.body
+public async handle(request: Request, response: Response) {
+    const {name, topic} = request.body
     const quizOrError: Result<QuizModel> =  await this.createQuizUseCase.execute(
         {
-            quiz_category,
+            topic,
             name
         }
     )

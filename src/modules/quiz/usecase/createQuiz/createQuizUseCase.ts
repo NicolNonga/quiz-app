@@ -10,7 +10,7 @@ export class  CreateQuizUseCase implements  IuseCase<createQuizDTO, any>{
     }
    public async execute(data: createQuizDTO, body?: any): Promise<Result<QuizModel> >{
         
-    const {name} = data
+    const {name, topic} = data
         // first check if quiz name  exits
           const quiz_name = await this.quizRepository.findQuizByName(name);
            if(quiz_name){
@@ -27,7 +27,10 @@ export class  CreateQuizUseCase implements  IuseCase<createQuizDTO, any>{
           
            
 
-           const quizCreated =  await this.quizRepository.createQuiz({name: name})
+           const quizCreated =  await this.quizRepository.createQuiz({
+             name,
+            topic
+        })
 
            return Result.ok(quizCreated)
         

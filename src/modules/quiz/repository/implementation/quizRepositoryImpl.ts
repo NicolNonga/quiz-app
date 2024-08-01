@@ -25,6 +25,7 @@ export class QuizRepositoryImpl implements IQuizRepository {
       return await this.prismaDb.quiz.create({
         data: {
           name: quiz_data?.name,
+          topic: quiz_data?.topic
         },
       });
     } catch (error) {}
