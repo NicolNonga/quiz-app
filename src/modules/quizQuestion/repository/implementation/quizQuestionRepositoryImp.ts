@@ -37,13 +37,16 @@ export class QuizQuestionRepositoryImpl implements IQuizQuestionRepository {
   }
 
   public async findAll(): Promise<QuizQuestionModel[]> {
-    return await this.prismaDb.quiz_question.findMany({
-      
-      orderBy: [
-        {
-          createdAt: 'desc'
-        }
-      ]
+    return await this.prismaDb.section_question.findMany({
+               include: {
+                quiz_question: true,
+                quiz_section:  true
+                
+                
+               },
+               orderBy: {
+                id: 'desc'
+               }
   
     });
   }
