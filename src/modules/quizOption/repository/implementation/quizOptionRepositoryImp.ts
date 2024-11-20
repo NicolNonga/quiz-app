@@ -8,7 +8,7 @@ import { quiz_option } from "@prisma/client";
 export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
   private prismaDb = db;
   public async create(quizOption: QuizOption, quiz_question_id: string ): Promise<quiz_option> {
-    console.log(quizOption)
+    console.log(quiz_question_id)
             try {
             const quiz=   await this.prismaDb.quiz_option.create({
                 data: {
@@ -21,8 +21,9 @@ export class QuizOptionRepositoryImpl implements IQuizOptionRepository {
               });
                  return quiz
             } catch (error) {
-              return {} as quiz_option
               console.log(error)
+              return {} as quiz_option
+       
             }
   }
   update(data: createQuizOptionDTO, id: string): Promise<void> {
