@@ -77,9 +77,7 @@ export class QuizSessionUsersRepository implements quizUserRepositoryInterface {
                   
                 },
                 include: {
-                    user: {
-                        
-                    }
+                    user: true
                 }
             }
         )

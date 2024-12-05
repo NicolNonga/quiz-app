@@ -36,13 +36,15 @@ export class QuizAttemptedRepository implements saveQuizAttemptedInterfaceRepo {
     }
   }
   async create(data: saveQuizAttemptedInterface): Promise<void> {
+    console.log(data.time_to_complete)
 
     try {
       await db.quiz_attempt.create({
         data: {
           user_id: data.user_id,
           quez_option_id: data.option_id,
-          quiz_section_id: data.quiz_section_id
+          quiz_section_id: data.quiz_section_id,
+          time_take_to_complete:  data.time_to_complete ?? ''
         }
       })
     } catch (error) {

@@ -7,6 +7,7 @@ export interface saveQuizAttemptedInterface {
     user_id: string,
     quiz_section_id: string,
     option_id: string
+    time_to_complete?: string
 }
 
 export class SaveQuizAttemptedByUserUsseCase implements IuseCase<any, any> {
@@ -16,7 +17,6 @@ export class SaveQuizAttemptedByUserUsseCase implements IuseCase<any, any> {
     }
    
    async execute(data:saveQuizAttemptedInterface, body?: any) {
-    console.log(data)
           await this.quizAttempetedRepository.create(data)
     }
     
